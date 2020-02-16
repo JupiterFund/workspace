@@ -1,0 +1,12 @@
+name: minimal
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - pip=20.0.2
+  - ipykernel=5.1.4
+  - numpy=1.18.1
+  - pandas=1.0.1
+  - protobuf=3.11.3
+  - python-confluent-kafka=1.3.0
+prefix: /opt/conda/envs/minimal
