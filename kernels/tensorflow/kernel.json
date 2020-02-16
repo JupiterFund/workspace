@@ -1,0 +1,11 @@
+{
+    "argv": [
+        "/opt/conda/envs/tensorflow/bin/python",
+        "-m",
+        "ipykernel_launcher",
+        "-f",
+        "{connection_file}"
+    ],
+    "display_name": "JupiterFund (tensorflow)",
+    "language": "python"
+}

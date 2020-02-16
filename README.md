@@ -1,11 +1,19 @@
-# JupyterFund Base Notebook
+# JupyterFund Workspace
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/jupiterfund/base-notebook.svg)](https://hub.docker.com/r/jupiterfund/base-notebook/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jupiterfund/workspace.svg)](https://hub.docker.com/r/jupiterfund/workspace/)
+
+### How to build
+
+```bash
+docker build -t jupiterfund/workspace .
+```
 
 ### Run the latest stable version
 
-```
-docker run -d -p 8888:8888 -v "$PWD":/home/jovyan/work jupiterfund/base-notebook:latest
+```bash
+# Mount volumes for libs and commons
+# Enable jupyter lab mode
+docker run -d -p 8888:8888 -v share-lib:/share/lib -e JUPYTER_ENABLE_LAB=yes jupiterfund/workspace:latest
 ```
 
 Go to http://localhost:8888 to access it.
