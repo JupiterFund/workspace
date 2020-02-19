@@ -1,0 +1,2 @@
+@jupyterlab/git
+@jupyterlab/toc

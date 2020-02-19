@@ -11,9 +11,9 @@ docker build -t jupiterfund/workspace .
 ### Run the latest stable version
 
 ```bash
-# Mount volumes for libs and commons
 # Enable jupyter lab mode
-docker run -d -p 8888:8888 -v share-lib:/share/lib -e JUPYTER_ENABLE_LAB=yes jupiterfund/workspace:latest
+docker run -d -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes kevinprotoss/workspace:latest
+
 ```
 
 Go to http://localhost:8888 to access it.
