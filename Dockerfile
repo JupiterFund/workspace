@@ -21,7 +21,7 @@ COPY .condarc $HOME/.condarc
 # `--chown` does not work for dockerhub because of docker version 18.03
 RUN mkdir -p /share/jupiterapis && \
     ln -s /share/jupiterapis $HOME/jupiterapis && \
-    mkdir -p /share/commons && && \
+    mkdir -p /share/commons && \
     ln -s /share/commons $HOME/commons && \
     chown -R $NB_UID:$NB_GID /tmp && \
     chown -R $NB_UID:$NB_GID $HOME
