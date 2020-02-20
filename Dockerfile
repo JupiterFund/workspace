@@ -10,35 +10,31 @@ USER root
 COPY install-kernels.bash /usr/local/bin/install-kernels
 RUN chmod a+rx /usr/local/bin/install-kernels
 
-# Prepare directories for required libraries and common codes
-RUN mkdir -p /share/jupiterapis && \
-    ln -s /share/jupiterapis $HOME/jupiterapis && \
-    mkdir -p /share/commons && \
-    ln -s /share/commons $HOME/commons
-
-USER $NB_UID
-
+COPY envs /tmp/envs
+COPY extensions /tmp/extensions
+COPY kernels $HOME/.local/share/jupyter/kernels
+COPY user-settings $HOME/.jupyter/lab/user-settings
 # Custom channel configurations for domestic use
 COPY .condarc $HOME/.condarc
 
-# Kernel environments
-COPY --chown=$NB_UID:$NB_GID envs /tmp/envs
-#RUN install-kernels
-# Kernel definitions
-COPY --chown=$NB_UID:$NB_GID kernels $HOME/.local/share/jupyter/kernels
+# Prepare directories
+# `--chown` does not work for dockerhub because of docker version 18.03
+RUN mkdir -p /share/jupiterapis && \
+    ln -s /share/jupiterapis $HOME/jupiterapis && \
+    mkdir -p /share/commons && && \
+    ln -s /share/commons $HOME/commons && \
+    chown -R $NB_UID:$NB_GID /tmp && \
+    chown -R $NB_UID:$NB_GID $HOME
 
-# Jupyter lab settings
-RUN mkdir -p $HOME/.jupyter/lab
-COPY --chown=$NB_UID:$NB_GID user-settings $HOME/.jupyter/lab/user-settings
-# Jupyter lab extensions
-COPY --chown=$NB_UID:$NB_GID extensions /tmp/extensions
-RUN conda install -y -c conda-forge jupyterlab-git=0.9.0
-RUN jupyter labextension install $(tr '\n' ' ' < /tmp/extensions/labextensions.txt)
-RUN jupyter lab build
-RUN jupyter serverextension enable --py jupyterlab_git
-RUN jupyter serverextension list
-RUN jupyter labextension list
+USER $NB_UID
+
+RUN install-kernels && \
+    conda install -y -c conda-forge jupyterlab-git=0.9.0 && \
+    jupyter labextension install $(tr '\n' ' ' < /tmp/extensions/labextensions.txt) && \
+    jupyter lab build && \
+    jupyter serverextension enable --py jupyterlab_git && \
+    jupyter serverextension list && \
+    jupyter labextension list
 
 # Extend PYTHONPATH for external libraries
 ENV PYTHONPATH="${PYTHONPATH}:/share/jupiterapis:/share/commons"
-
