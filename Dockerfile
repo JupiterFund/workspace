@@ -1,6 +1,12 @@
 # Copyright (c) HyperCloud Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=jupyter/minimal-notebook
+
+# Limit base image version
+# Workaround: Package conflict error occurs because of 
+# changed channel_priority configuration of conda
+# https://github.com/jupyter/docker-stacks/commit/8943a3d826dee159c4121ae016dd51bf783f8eec#diff-ee1a80c1f4c0b6f2d46dcfce5016a547
+# TODO: reset or overwrite this configuration in the rest script
+ARG BASE_CONTAINER=jupyter/minimal-notebook:63d0df23b673
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Junxiang Wei <kevinprotoss.wei@gmail.com>"
