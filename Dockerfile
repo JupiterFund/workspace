@@ -31,8 +31,8 @@ RUN mkdir -p /share/jupiterapis && \
     ln -s /share/data $HOME/data && \
     mkdir -p /share/commons && \
     ln -s /share/commons $HOME/commons && \
-    mkdir -p /share/work && \
-    ln -s /share/work $HOME/work && \
+    mkdir -p /share/workspaces && \
+    ln -s /share/workspaces $HOME/work/workspaces && \
     chown -R $NB_UID:$NB_GID /tmp && \
     chown -R $NB_UID:$NB_GID $HOME
 
