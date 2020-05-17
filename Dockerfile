@@ -30,7 +30,9 @@ RUN mkdir -p /share/jupiterapis && \
     mkdir -p /share/data && \
     ln -s /share/data $HOME/data && \
     mkdir -p /share/commons && \
-    ln -s /share/commons $HOME/commons && \
+    ln -s /share/commons $HOME/work/commons && \
+    mkdir -p /share/analysis && \
+    ln -s /share/analysis $HOME/work/analysis && \
     mkdir -p /share/workspaces && \
     ln -s /share/workspaces $HOME/work/workspaces && \
     chown -R $NB_UID:$NB_GID /tmp && \
