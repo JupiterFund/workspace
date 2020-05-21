@@ -6,7 +6,7 @@
 # changed channel_priority configuration of conda
 # https://github.com/jupyter/docker-stacks/commit/8943a3d826dee159c4121ae016dd51bf783f8eec#diff-ee1a80c1f4c0b6f2d46dcfce5016a547
 # TODO: reset or overwrite this configuration in the rest script
-ARG BASE_CONTAINER=jupyter/minimal-notebook:63d0df23b673
+ARG BASE_CONTAINER=jupyter/minimal-notebook:latest
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Junxiang Wei <kevinprotoss.wei@gmail.com>"
