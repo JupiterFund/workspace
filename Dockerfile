@@ -41,7 +41,7 @@ RUN mkdir -p /share/jupiterapis && \
 USER $NB_UID
 
 RUN install-kernels && \
-    conda install -y -c conda-forge jupyterlab-git=0.9.0 && \
+    conda install -y -c conda-forge jupyterlab-git=0.23.2 && \
     jupyter labextension install $(tr '\n' ' ' < /tmp/extensions/labextensions.txt) && \
     jupyter lab build && \
     jupyter serverextension enable --py jupyterlab_git && \
